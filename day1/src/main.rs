@@ -19,9 +19,11 @@ fn main() -> std::io::Result<()> {
 
     for i in data.iter() {
         for j in data.iter() {
-            if j + i == 2020 {
-                println!("{}", j * i);
-                return Ok(());
+            for k in data.iter() {
+                if j + i + k == 2020 {
+                    println!("{}", j * i * k);
+                    return Ok(());
+                }
             }
         }
 
