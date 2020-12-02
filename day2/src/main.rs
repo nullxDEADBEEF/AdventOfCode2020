@@ -12,21 +12,23 @@ fn main() -> std::io::Result<()> {
 
     for line in file.lines() {
         let line_data: Vec<_> = line.split(|c| c == '-' || c == ' ').collect();
-        let lower_bound: i32 = line_data[0].parse().unwrap();
-        let higher_bound: i32 = line_data[1].parse().unwrap();
+        //let lower_bound: i32 = line_data[0].parse().unwrap();
+        //let higher_bound: i32 = line_data[1].parse().unwrap();
+        let position_one: usize = line_data[0].parse().unwrap();
+        let position_two: usize = line_data[1].parse().unwrap();
         let policy_character: char = line_data[2].trim_matches(':').parse().unwrap();
         let password = line_data[3]; 
 
-        let mut character_counter = 0;
-        for character in password.chars() {
-            if character == policy_character {
-                character_counter += 1;
-            }
-        }
-        if character_counter >= lower_bound && character_counter <= higher_bound {
+        //let mut character_counter = 0;
+        let position_one_letter = password.chars().nth(position_one - 1);
+        let position_two_letter = password.chars().nth(position_two - 1);
+        if position_one_letter == Some(policy_character) && position_two_letter != position_one_letter {
+            valid_passwords += 1;
+        } 
+        
+        if position_two_letter == Some(policy_character) && position_two_letter != position_one_letter {
             valid_passwords += 1;
         }
-
     }
 
     println!("valid passwords: {}", valid_passwords);
