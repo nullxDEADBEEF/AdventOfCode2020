@@ -25,7 +25,7 @@ pub fn solution() -> std::io::Result<()> {
         }
     }
 
-    println!("Trees encountered: {}", trees_encountered);
+    println!("part1: Trees encountered: {}", trees_encountered);
 
     Ok(())
 }
